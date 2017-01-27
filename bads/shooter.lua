@@ -110,7 +110,7 @@ function badsDB.shooter:update(dt)
 				self.box:move(xvel*self.speed*dt, -yvel*self.speed*dt)
 			end
 		end
-
+		self.bulletTimer = self.bulletTimerMax
 		table.insert(bads, newBullet)
 		love.audio.play(bulletSound)
 	else
