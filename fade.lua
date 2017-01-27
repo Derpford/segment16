@@ -2,15 +2,19 @@
 
 fadeEffect = love.graphics.newShader[[
 
-extern number factor = 1;
-extern number startAlpha = 0.5;
-extern bool isWhite = false;
+extern number factor;
+extern number startAlpha;
+extern bool isWhite;
 
 vec4 effect(vec4 color, Image tex, vec2 tc, vec2 sc) {
+	number alphaNewX = 0.0
+	number alphaNewY = 0.0
+	number alphaNew  = 0.0
+
 	vec4 src = Texel(tex, tc);
-	number alphaNewX = startAlpha - (abs(0.5 - tc.x)*factor);
-	number alphaNewY = startAlpha - (abs(0.5 - tc.y)*factor);
-	number alphaNew = alphaNewX*alphaNewY;
+	alphaNewX = startAlpha - (abs(0.5 - tc.x)*factor);
+	alphaNewY = startAlpha - (abs(0.5 - tc.y)*factor);
+	alphaNew = alphaNewX*alphaNewY;
 	src.a = src.a * alphaNew;
 	if(isWhite==true){
 		src.r=1;
@@ -22,3 +26,7 @@ vec4 effect(vec4 color, Image tex, vec2 tc, vec2 sc) {
 }
 
 ]]
+
+fadeEffect:send("factor", 1)
+fadeEffect:send("startAlpha", 0.5)
+fadeEffect:send("isWhite", false)
