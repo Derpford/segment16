@@ -21,5 +21,5 @@ vec4 effect(vec4 colour, Image tex, vec2 tc, vec2 sc)
       sum += Texel(tex, tc + offset);
       }
     }
-  return ((sum / (samples * samples)) + source) * colour;
+  return ((sum / vec4(samples * samples)) + source) * colour;
 }]]
