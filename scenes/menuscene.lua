@@ -5,7 +5,7 @@ function menuScene:load()
 	pause = false
 	love.timer.sleep(0.1)
 	--set a fancy shader
-	screen = love.graphics.newCanvas(600,600)
+	screen = love.graphics.newCanvas(love.graphics.getWidth(),love.graphics.getHeight())
 	--Menus.
 	-- First the main one.
 	mainMenu = {
