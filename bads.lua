@@ -112,6 +112,7 @@ function badsUpdate(dt)
 				hc.remove(bad.box)
 				table.remove(bads, i)
 		end
+	end
 end
 
 function badsDraw(dt)
