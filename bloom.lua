@@ -2,16 +2,16 @@
 -- Thanks to BlackBulletIV for this shader script. I hope you don't mind that I'm using it
 bloomEffect = love.graphics.newShader[[
 
-extern vec2 size = vec2(600,600);
-extern int samples = 8; // pixels per axis; higher = bigger glow, worse performance
-extern float quality = 1; // lower = smaller glow, better quality
+extern vec2 size;
+extern int samples; //higher = bigger glow, worse performance
+extern float quality; // lower = smaller glow, better quality
 
 vec4 effect(vec4 colour, Image tex, vec2 tc, vec2 sc)
 {
   vec4 source = Texel(tex, tc);
   vec4 sum = vec4(0);
   int diff = (samples - 1) / 2;
-  vec2 sizeFactor = vec2(1) / size * quality;
+  vec2 sizeFactor = vec2(1) / vec2(size * quality);
         
   for (int x = -diff; x <= diff; x++)
     {
