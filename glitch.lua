@@ -2,9 +2,9 @@
 
 glitchEffect = love.graphics.newShader[[
 
-extern number randx = 0;
-extern number ymin = 0;
-extern number ysize = 1;
+extern number randx;
+extern number ymin;
+extern number ysize;
 number ymax = ymin + ysize;
 
 vec4 effect(vec4 color, Image tex, vec2 tc, vec2 sc) {
@@ -17,3 +17,6 @@ vec4 effect(vec4 color, Image tex, vec2 tc, vec2 sc) {
 }
 
 ]]
+glitchEffect:send("randx",0)
+glitchEffect:send("ymin",0)
+glitchEffect:send("ysize",1)

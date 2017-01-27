@@ -79,38 +79,40 @@ function badsDB.shooter:update(dt)
 	end
 
 	if self.bulletTimer < 0 then
-		bulletTimer = bulletTimerMax
-		offset = 8
-		xpos, ypos = self.box:center()
-		ypos = ypos - offset*math.cos(self.box:rotation())
-		xpos = xpos + offset*math.sin(self.box:rotation())
-		newBullet = {
-									box = hc.point(xpos + offset*math.sin(self.box:rotation()+(0.5*math.pi)), ypos + offset*math.cos(self.box:rotation()+(0.5*math.pi))),
-									img = shooterBulletSheet,
-									anim = shooterBulletAnim:clone(),
-									speed = 500
-								}
-		newBullet.box:setRotation(self.box:rotation())
-		function newBullet:draw()
-			cx, cy = self.box:center()
-			if not options.bloom then
-				love.graphics.setShader(fadeEffect)
+		local xpos, ypos = self.box:center()
+		if ypos > 0 and ypos < love.graphics.getHeight() and xpos > 0 and xpos < love.graphics.getWidth() then
+			bulletTimer = bulletTimerMax
+			offset = 8
+			ypos = ypos - offset*math.cos(self.box:rotation())
+			xpos = xpos + offset*math.sin(self.box:rotation())
+			newBullet = {
+										box = hc.point(xpos + offset*math.sin(self.box:rotation()+(0.5*math.pi)), ypos + offset*math.cos(self.box:rotation()+(0.5*math.pi))),
+										img = shooterBulletSheet,
+										anim = shooterBulletAnim:clone(),
+										speed = 500
+									}
+			newBullet.box:setRotation(self.box:rotation())
+			function newBullet:draw()
+				cx, cy = self.box:center()
+				if not options.bloom then
+					love.graphics.setShader(fadeEffect)
+				end
+				shooterBulletAnim:draw(shooterBulletSheet, cx, cy, self.box:rotation(), 1.5-halfSec, 1.5-halfSec, 8, 0)
+				love.graphics.setShader()
+				if not options.bloom then
+					shooterBulletAnim:draw(shooterBulletSheet, cx, cy, self.box:rotation(), 1, 1, 8, 0)
+				end
 			end
-			shooterBulletAnim:draw(shooterBulletSheet, cx, cy, self.box:rotation(), 1.5-halfSec, 1.5-halfSec, 8, 0)
-			love.graphics.setShader()
-			if not options.bloom then
-				shooterBulletAnim:draw(shooterBulletSheet, cx, cy, self.box:rotation(), 1, 1, 8, 0)
-			end
-		end
-		function newBullet:update(dt)
-			print(tostring(dt))
-			xvel = math.sin(self.box:rotation())
-			yvel = math.cos(self.box:rotation())
-			self.box:move(xvel*self.speed*dt, -yvel*self.speed*dt)
-			xpos, ypos = self.box:center()
-			if ypos < 0 or ypos > love.graphics.getHeight() or xpos < 0 or xpos > love.graphics.getWidth() then
-				hc.remove(self.box)
-				table.remove(bads, i)
+			function newBullet:update(dt)
+				print(tostring(dt))
+				local xvel = math.sin(self.box:rotation())
+				local yvel = math.cos(self.box:rotation())
+				self.box:move(xvel*self.speed*dt, -yvel*self.speed*dt)
+				xpos, ypos = self.box:center()
+				if ypos < 0 or ypos > love.graphics.getHeight() or xpos < 0 or xpos > love.graphics.getWidth() then
+					hc.remove(self.box)
+					table.remove(bads, i)
+				end
 			end
 		end
 
