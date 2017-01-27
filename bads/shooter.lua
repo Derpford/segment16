@@ -108,11 +108,6 @@ function badsDB.shooter:update(dt)
 				local xvel = math.sin(self.box:rotation())
 				local yvel = math.cos(self.box:rotation())
 				self.box:move(xvel*self.speed*dt, -yvel*self.speed*dt)
-				xpos, ypos = self.box:center()
-				if ypos < 0 or ypos > love.graphics.getHeight() or xpos < 0 or xpos > love.graphics.getWidth() then
-					hc.remove(self.box)
-					table.remove(bads, i)
-				end
 			end
 		end
 

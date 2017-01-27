@@ -11,12 +11,10 @@ function gameScene:load()
 	randx2 = 0
 	ymin2 = 0
 	ysize2 = 0
-	screenBase = love.graphics.newCanvas(600,600)
-	screen1 = love.graphics.newCanvas(600,600)
-	screen2 = love.graphics.newCanvas(600,600)
-	screen3 = love.graphics.newCanvas(600,600)
-	--glitchScreen = love.graphics.newCanvas(600,600)
-	--finalScreen = love.graphics.newCanvas(600,600)
+	screenBase = love.graphics.newCanvas(love.graphics.getWidth(),love.graphics.getHeight())
+	screen1 = love.graphics.newCanvas(love.graphics.getWidth(),love.graphics.getHeight())
+	screen2 = love.graphics.newCanvas(love.graphics.getWidth(),love.graphics.getHeight())
+	screen3 = love.graphics.newCanvas(love.graphics.getWidth(),love.graphics.getHeight())
 	segment = options.startseg
 	round = 0
 	roundTimer=0
