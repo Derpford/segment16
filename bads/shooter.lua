@@ -52,7 +52,7 @@ function badsDB.shooter:update(dt)
 	cx,cy = self.box:center()
 	ox,oy = player.box:center()
 	tx,ty = ox-cx,oy-cy
-	rot = math.atan2(tx,ty)
+	rot = math.atan2(ty,tx)
 	self.box:setRotation(rot)
 	if math.sqrt(tx^2+ty^2) > self.goalDistance then
 		rotFinal = rot + 0.6*math.pi
@@ -93,7 +93,7 @@ function badsDB.shooter:update(dt)
 									}
 			newBullet.box:setRotation(self.box:rotation())
 			function newBullet:draw()
-				cx, cy = self.box:center()
+				local cx, cy = self.box:center()
 				if not options.bloom then
 					love.graphics.setShader(fadeEffect)
 				end
@@ -104,7 +104,6 @@ function badsDB.shooter:update(dt)
 				end
 			end
 			function newBullet:update(dt)
-				print(tostring(dt))
 				local xvel = math.sin(self.box:rotation())
 				local yvel = math.cos(self.box:rotation())
 				self.box:move(xvel*self.speed*dt, -yvel*self.speed*dt)
