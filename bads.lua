@@ -105,12 +105,13 @@ function badsUpdate(dt)
 		if bad.update ~= nil then
 			bad:update(dt)
 		end
-		xpos, ypos = bad.box:center()
+	end
+	for i, bad in ipairs(bads) do
+		local xpos, ypos = bad.box:center()
 		if xpos < -margin*2 or ypos < -margin*2 or xpos > love.graphics.getWidth()+margin*2 or ypos > love.graphics.getHeight()+margin*2 then
 				hc.remove(bad.box)
 				table.remove(bads, i)
 		end
-	end
 end
 
 function badsDraw(dt)
