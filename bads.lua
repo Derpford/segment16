@@ -33,14 +33,14 @@ end
 
 function makeBad(x,y)
 	--if badCycleNumber%8 == 0 and segment >= shooterStart then
-		bad = badsDB.shooter:new(x,y)
+	--	bad = badsDB.shooter:new(x,y)
 	--else
-	--	if badCycleNumber%4 == 0 and segment >= chaserStart then
-	--		bad = badsDB.chaser:new(x,y)
-	--	else
-	--		bad = badsDB.spinner:new(x,y)
-	--	end
-	--end
+		if badCycleNumber%4 == 0 and segment >= chaserStart then
+			bad = badsDB.chaser:new(x,y)
+		else
+			bad = badsDB.spinner:new(x,y)
+		end
+	end
 	return bad
 end
 
