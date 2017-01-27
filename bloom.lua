@@ -24,6 +24,6 @@ vec4 effect(vec4 colour, Image tex, vec2 tc, vec2 sc)
   return ((sum / vec4(samples * samples)) + source) * colour;
 }]]
 
-bloomEffect:send("size",vec2(600,600))
+bloomEffect:send("size",{600,600})
 bloomEffect:send("samples",8)
 bloomEffect:send("quality",1)

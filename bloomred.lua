@@ -29,6 +29,6 @@ vec4 effect(vec4 colour, Image tex, vec2 tc, vec2 sc)
   return ((sum / (samples * samples)) + source) * colour;
 }]]
 
-shaderBloomRed:send("size",vec2(600,600))
+shaderBloomRed:send("size",{600,600})
 shaderBloomRed:send("samples",5)
 shaderBloomRed:send("quality",2.5)
